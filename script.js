@@ -14,7 +14,11 @@ Array.from(items).forEach(element => {
             // numberInput.value = numberInput.value.replace('0','');
             // }
             numberInput.value += value;
+            
             currentNumber += value;
+            if(!currentNumber.endsWith('.')) { 
+                currentNumber = parseFloat(currentNumber);
+            }
         } else if (value === 'C') {
             numberInput.value = 0;
             currentNumber = '';
@@ -32,6 +36,7 @@ Array.from(items).forEach(element => {
         } else if (value === '+' || value === '-' || value === 'x' || value === '/') {
             
             chosenOperator = value;
+            console.log(chosenOperator)
             firstNumber = parseFloat(currentNumber);
             console.log(firstNumber)
             currentNumber = '';

@@ -10,35 +10,42 @@ Array.from(items).forEach(element => {
         let value = e.target.textContent;
 
         if (!isNaN(value) || value === '.') {
+            // if(numberInput.value.indexOf('.')===-1) {
+            // numberInput.value = numberInput.value.replace('0','');
+            // }
             numberInput.value += value;
-            currentNumber += value; // Update currentNumber
-        } 
-        else if (isNaN(value) && value!=='C' && value!=='='){
-            chosenOperator = value;
-            numberInput.value += chosenOperator;
-            return;
-        }
-        else if (value === 'C') {
-            numberInput.value = '';
+            currentNumber += value;
+        } else if (value === 'C') {
+            numberInput.value = 0;
             currentNumber = '';
             firstNumber = '';
-            chosenOperator = null; // Reset chosenOperator
+            chosenOperator = null;
         } else if (value === '=') {
-            
             if (chosenOperator && firstNumber && currentNumber) {
                 const operationResult = operate(chosenOperator, parseFloat(firstNumber), parseFloat(currentNumber));
                 numberInput.value = operationResult;
+                console.log(numberInput.value)
                 firstNumber = operationResult.toString();
                 currentNumber = '';
-                chosenOperator = null; // Reset chosenOperator
+                chosenOperator = null; 
             }
-        } else if (value === '⌫') {
-            numberInput.value = numberInput.value.slice(0, -1);
-            currentNumber = currentNumber.slice(0, -1); // Update currentNumber
-        } else if (value === '+' || value === '-' || value === '×' || value === '/') {
+        } else if (value === '+' || value === '-' || value === 'x' || value === '/') {
+            
             chosenOperator = value;
-            firstNumber = parseFloat(numberInput.value); // Update firstNumber
+            firstNumber = parseFloat(currentNumber);
+            console.log(firstNumber)
             currentNumber = '';
+            numberInput.value += value;
+            console.log(numberInput.value)
+        }
+        else if (value === '+/-') { 
+            currentNumber = (-parseFloat(currentNumber)).toString();
+            numberInput.value = currentNumber;
+        } else if (value === '%') { 
+            currentNumber = (parseFloat(currentNumber) / 100).toString();
+            console.log(currentNumber==true)
+            
+            numberInput.value = !currentNumber ? '0' : currentNumber;
         }
     });
 });
@@ -62,7 +69,7 @@ const operate = (operator, number1, number2) => {
             return subtract(number1, number2);
         case "/":
             return divide(number1, number2);
-        case "×":
+        case "x":
             return multiply(number1, number2);
         default:
             return null;

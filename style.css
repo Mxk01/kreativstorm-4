@@ -1,0 +1,98 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 2rem;
+    background-color: bisque;
+}
+
+.calculator {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    max-width: 800px; 
+}
+
+.calculator__grid {
+    display: grid;
+    width: 100%;
+    height: 60vh;
+    max-width: 600px; 
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    grid-template-rows: repeat(5, 1fr);
+    background-color: #292D36;
+    border-radius: 20px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    padding: 20px;
+}
+
+.calculator__grid > .calculator__item {
+    background-color: #272B33;
+    color: white;
+    border: 0;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.7rem;
+    cursor: pointer;
+    text-align: center;
+    padding: 15px;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.calculator__grid > .calculator__item:hover {
+    background-color: #1f2229;
+    transform: scale(1.05);
+}
+
+.calculator__grid > .operations {
+    color: rgb(255, 74, 74);
+}
+
+.calculator__grid > .operations:hover {
+    color: rgb(205, 53, 53);
+}
+
+.calculator__grid > .utils {
+    color: rgb(158, 255, 202);
+}
+
+.calculator__grid > .utils:hover {
+    color: rgb(122, 255, 181);
+}
+
+.calculator__double {
+    grid-column: span 2;
+}
+
+.calculator__input {
+    width: 100%;
+    height: 25vh;
+    background-color: #22252D;
+    border-radius: 20px;
+    color: white;
+    border: 0;
+    padding: 10px;
+    padding-left: 40px;
+    text-align: right;
+    font-family: "Roboto", sans-serif;
+    border-top-left-radius: 40px;
+    border-top-right-radius: 40px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    font-size: 1.6rem;
+}
+
+.calculator__input:hover {
+    background-color: #1f2229;
+}

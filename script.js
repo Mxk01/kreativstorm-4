@@ -8,11 +8,11 @@ let firstNumber = '';
 Array.from(items).forEach(element => {
     element.addEventListener("click", (e) => {
         let value = e.target.textContent;
-
+             if(numberInput.value.startsWith('0') && !numberInput.value.includes('.')) {
+            numberInput.value = numberInput.value.replace('0','');
+            }
         if (!isNaN(value) || value === '.') {
-            // if(numberInput.value.indexOf('.')===-1) {
-            // numberInput.value = numberInput.value.replace('0','');
-            // }
+         
             numberInput.value += value;
             
             currentNumber += value;
@@ -33,8 +33,10 @@ Array.from(items).forEach(element => {
                 currentNumber = '';
                 chosenOperator = null; 
             }
-        } else if (value === '+' || value === '-' || value === 'x' || value === '/') {
-            
+        } else if (value === '+' || value === '-' || value === 'x' || value === '÷') {
+            console.log(value);
+            if(value=='÷') value = '/';
+            else if(value=='x') value ='*';
             chosenOperator = value;
             console.log(chosenOperator)
             firstNumber = parseFloat(currentNumber);
@@ -74,7 +76,7 @@ const operate = (operator, number1, number2) => {
             return subtract(number1, number2);
         case "/":
             return divide(number1, number2);
-        case "x":
+        case "*":
             return multiply(number1, number2);
         default:
             return null;
